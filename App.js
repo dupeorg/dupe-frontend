@@ -3,6 +3,9 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Explore from "./pages/Explore";
 import Inventory from "./pages/Inventory";
 import Profile from "./pages/Profile";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import Tradebutton from './components/tradebutton';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,3 +21,15 @@ export default function App() {
     </NavigationContainer>
   );
 }
+    <View style={styles.container}>
+    <Tradebutton />
+  </View>
+
+const styles = StyleSheet.create({ 
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
