@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Explore from "./pages/Explore";
 import Inventory from "./pages/Inventory";
 import Profile from "./pages/Profile";
+import NavBar from "./components/NavBar";
 
 const Stack = createNativeStackNavigator();
 
@@ -10,11 +11,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Explore" component={Explore}/>
-        <Stack.Screen name="Inventory" component={Inventory}/>
-        <Stack.Screen name="Profile" component={Profile}/>
-      </Stack.Navigator>
+      <NavBar />
     </NavigationContainer>
   );
 }
