@@ -3,7 +3,7 @@ import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import Explore from '../pages/Explore';
 import Profile from '../pages/Profile';
 import Inventory from '../pages/Inventory';
-import Trade from '../pages/Trade';
+import Trade from './TradeModal';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -35,16 +35,7 @@ export default function NavBar() {
           ),
         }}
       />
-      <Tab.Screen
-        name="Trade"
-        component={Trade}
-        options={{
-          tabBarLabel: 'Trade',
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="exchange" color={color} size={26} />
-          ),
-        }}
-      />
+
       <Tab.Screen
         name="Profile"
         component={Profile}

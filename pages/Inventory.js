@@ -48,7 +48,7 @@ export default function InventoryPage() {
       <FlatList
         data={inventory}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ItemCard item={item} />}
+        renderItem={({ item }) => <ItemCard item={item} isOutgoing={false}/>}
         numColumns={2}
         contentContainerStyle={styles.listContainer}
       />

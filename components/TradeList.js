@@ -56,7 +56,13 @@ const TradeList = ({isOutgoing}) => {
     <View>
       <TouchableOpacity style={buttonStyles.button} onPress={sendTradeRequest} disabled={requestSent}>
         <Text style={buttonStyles.buttonText}>
-          {isOutgoing ? (requestSent ? 'Request Sent' : 'Request') : (requestSent ? 'Accept Sent' : 'Accept')}
+        {isOutgoing
+            ? requestSent
+              ? 'Request Sent'
+              : 'Request'
+            : requestSent
+            ? 'Accept Sent'
+            : 'Accept'}
         </Text>
       </TouchableOpacity>
       <FlatList
@@ -69,16 +75,18 @@ const TradeList = ({isOutgoing}) => {
 };
 
 const buttonStyles = StyleSheet.create({
+
   button: {
-    backgroundColor: 'black',
-    borderRadius: 10,
-    padding: 10,
-    alignItems: 'center',
-    margin: 10,
+    backgroundColor: '#e91e63',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignSelf: 'center',
+    marginTop: 16,
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });
@@ -90,7 +98,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   selectedItem: {
-    backgroundColor: 'lightblue', // Add your selected item style here
+    backgroundColor: 'lightpink', // Add your selected item style here
   },
   unselectedItem: {},
   itemImage: {

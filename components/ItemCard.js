@@ -1,12 +1,36 @@
-import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import TradeModal from './TradeModal'
 
-export default function ItemCard({ item }) {
+export default function ItemCard({ item, isOutgoing }) {
+  const [modalVisible, setModalVisible] = useState(false);
+
+
+  const handleCardClick = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
-    <View style={styles.card}>
-      <Image source={{ uri: item.imageUrl }} resizeMode='cover' style={styles.image} />
-      <Text style={styles.name}>{item.name}</Text>
-      <Text style={styles.description}>{item.description}</Text>
+    <View>
+      <TouchableOpacity onPress={handleCardClick}>
+        <View style={styles.card}>
+          <Image source={{ uri: item.imageUrl }} resizeMode='cover' style={styles.image} />
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.description}>{item.description}</Text>
+        </View>
+      </TouchableOpacity>
+
+      {/* Render the modal */}
+      <TradeModal
+        isVisible={modalVisible}
+        closeModal={closeModal}
+        item={item}
+        isOutgoing={isOutgoing}
+      />
     </View>
   );
 };

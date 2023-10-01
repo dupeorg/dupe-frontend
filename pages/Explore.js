@@ -38,7 +38,7 @@ export default function Explore() {
       <SearchBar setResults={setSearchResults}/>
       <FlatList
         data={searchResults}
-        renderItem={({item}) => <ItemCard item={item}/>}
+        renderItem={({item}) => <ItemCard item={item} isOutgoing={true}/>}
         keyExtractor={(item) => item.id}
         numColumns={2}
         contentContainerStyle={styles.listContainer}
@@ -46,6 +46,7 @@ export default function Explore() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
