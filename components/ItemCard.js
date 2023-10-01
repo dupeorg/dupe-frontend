@@ -2,10 +2,9 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 
 export default function ItemCard({ item }) {
-  console.log(item.imageUrl)
   return (
     <View style={styles.card}>
-      <Image source={{ uri: item.imageUrl }} style={styles.image} />
+      <Image source={{ uri: item.imageUrl }} resizeMode='cover' style={styles.image} />
       <Text style={styles.name}>{item.name}</Text>
       <Text style={styles.description}>{item.description}</Text>
     </View>
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 80,
+    height: 200,
     borderRadius: 10,
     marginBottom: 8,
   },

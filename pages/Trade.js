@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import TradeList, {data }from '../components/tradebutton';
+import TradeList, {data }from '../components/TradeList';
 import ItemCard from '../components/ItemCard';
 
-const MyComponent = (isOutgoing) => {
+const Trade = (isOutgoing) => {
   return (
     <View style={styles.container}>
       <ItemCard item={data}></ItemCard> 
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyComponent;
+export default Trade;

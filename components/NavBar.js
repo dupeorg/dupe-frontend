@@ -1,8 +1,9 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import Explore from '../pages/Explore';
 import Profile from '../pages/Profile';
 import Inventory from '../pages/Inventory';
+import Trade from '../pages/Trade';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -31,6 +32,16 @@ export default function NavBar() {
           tabBarLabel: 'Inventory',
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="inventory" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Trade"
+        component={Trade}
+        options={{
+          tabBarLabel: 'Trade',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="exchange" color={color} size={26} />
           ),
         }}
       />

@@ -1,7 +1,7 @@
-import React from "react";
-import {View, FlatList, ScrollView} from "react-native";
-import NavBar from "../components/NavBar";
+import React, { useState } from "react";
+import {View, FlatList} from "react-native";
 import ItemCard from "../components/ItemCard";
+import SearchBar from "../components/SearchBar";
 
 const sampleResults = [
   {
@@ -31,15 +31,16 @@ const sampleResults = [
 ];
 
 export default function Explore({ navigation }) {
+  const [searchResults, setSearchResults] = useState(sampleResults);
+
   return (
-    <ScrollView>
     <View>
+      <SearchBar setResults={setSearchResults}/>
       <FlatList
-        data={sampleResults}
+        data={searchResults}
         renderItem={({item}) => <ItemCard item={item}/>}
         keyExtractor={(item) => item.id}
       />
     </View>
-    </ScrollView>
   );
 }
