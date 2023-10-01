@@ -1,77 +1,69 @@
-import React, {Component} from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-
-//to add: call get_items
-const data = [
+export const data = [
   {
     id: '1',
     name: 'Running Shoes',
-    image: require('../images/item1.jpeg'), // Replace with your image path
+    imageUrl: require('../images/item1.jpeg'), // Replace with your image path
     description: 'shoe',
   },
   {
     id: '2',
     name: 'Brown Shoes',
-    image: require('../images/item2.png'), // Replace with your image path
+    imageUrl: require('../images/item2.png'), // Replace with your image path
     description: 'shoe',
   },
   // Add more items as needed
 ];
 
-const renderItem = ({ item }) => {
+const TradeList = ({isOutgoing}) => {
+  const [selectedItem, setSelectedItem] = useState(null); // State to store the last selected item
+  const [requestSent, setRequestSent] = useState(false);
 
-  const itemStyle = item.selected ? styles.selectedItem : styles.unselectedItem;
+  const handleRequest = () => {
+    setRequestSent(true);
+  };
 
+  const renderItem = ({ item }) => {
+    const itemStyle = item === selectedItem ? styles.selectedItem : styles.unselectedItem;
 
-  <TouchableOpacity onPress={() => handleItemPress(item)}>
-    <View style={styles.itemContainer}>
-      <Image source={item.image} style={styles.itemImage} />
-      <Text style={styles.itemName}>{item.name}</Text>
-    </View>
-  </TouchableOpacity>
-};
+    return (
+      <TouchableOpacity onPress={() => handleItemPress(item)}>
+        <View style={[styles.itemContainer, itemStyle]}>
+          <Image source={item.imageUrl} style={styles.itemImage} />
+          <Text style={styles.itemName}>{item.name}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
-const [lastSelectedItem, setLastSelectedItem] = useState(null);
+  const handleItemPress = (item) => {
+    setSelectedItem(item); // Update the selected item in state
+  };
 
-const handleItemPress = (selectedItem) => {
-  const updatedData = data.map((item) => {
-    if (item.id === selectedItem.id) {
-      return { ...item, selected: !item.selected };
+  const sendTradeRequest = () => {
+    if (selectedItem) {
+      console.log('Requesting item:', selectedItem);
+      // Implement your POST request logic here
+      setRequestSent(true);
+    } else {
+      console.log('No item selected');
     }
-    return item;
-  });
+  };
 
-  setData(updatedData);
-  setLastSelectedItem(selectedItem);
-};
-
-
-
-const TradeButton = () => {
-  return (
-    <TouchableOpacity style={buttonStyles.button} onPress={() => sendTradeRequest()}>
-      <Text style={buttonStyles.buttonText}>Request</Text>
-    </TouchableOpacity>
-  );
-};
-
-const sendTradeRequest = () => {
-  console.log("test")
-}
-
-const TradeList = () => {
   return (
     <View>
-    <TradeButton>
-
-    </TradeButton>
-    <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-    />
+      <TouchableOpacity style={buttonStyles.button} onPress={sendTradeRequest} disabled={requestSent}>
+        <Text style={buttonStyles.buttonText}>
+          {isOutgoing ? (requestSent ? 'Request Sent' : 'Request') : (requestSent ? 'Accept Sent' : 'Accept')}
+        </Text>
+      </TouchableOpacity>
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 };
@@ -79,15 +71,15 @@ const TradeList = () => {
 const buttonStyles = StyleSheet.create({
   button: {
     backgroundColor: 'black',
-    borderRadius: 10, // Adjust the border radius as needed
-    padding: 10, // Adjust the padding as needed
+    borderRadius: 10,
+    padding: 10,
     alignItems: 'center',
     margin: 10,
   },
   buttonText: {
     color: 'white',
-    fontSize: 16, // Adjust the font size as needed
-    fontWeight: 'bold', // Adjust the font weight as needed
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
@@ -97,6 +89,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
   },
+  selectedItem: {
+    backgroundColor: 'lightblue', // Add your selected item style here
+  },
+  unselectedItem: {},
   itemImage: {
     width: 50,
     height: 50,

@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import TradeList from '../components/tradebutton';
+import TradeList, {data }from '../components/tradebutton';
+import ItemCard from '../components/ItemCard';
 
-const MyComponent = () => {
+const MyComponent = (isOutgoing) => {
   return (
     <View style={styles.container}>
-      <TradeList>
+      <ItemCard item={data}></ItemCard> 
+      <TradeList isOutgoing = {isOutgoing}>
       </TradeList>
     </View>
   );
