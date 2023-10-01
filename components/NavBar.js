@@ -1,48 +1,49 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { MaterialIcons } from '@expo/vector-icons';
+import Explore from '../pages/Explore';
+import Profile from '../pages/Profile';
+import Inventory from '../pages/Inventory';
 
-export default function NavBar({ navigation, activeTab }) {
-  const navigateTo = (routeName) => {
-    navigation.navigate(routeName);
-  };
+const Tab = createMaterialBottomTabNavigator();
 
+export default function NavBar() {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigateTo('Explore')} style={activeTab === 'Explore' ? styles.activeTab : styles.tab}>
-        <Text style={activeTab === 'Explore' ? styles.activeTabText : styles.tabText}>Explore</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigateTo('Inventory')} style={activeTab === 'Inventory' ? styles.activeTab : styles.tab}>
-        <Text style={activeTab === 'Inventory' ? styles.activeTabText : styles.tabText}>Inventory</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigateTo('Profile')} style={activeTab === 'Profile' ? styles.activeTab : styles.tab}>
-        <Text style={activeTab === 'Profile' ? styles.activeTabText : styles.tabText}>Profile</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigateTo('TradeOutgoing')} style={activeTab === 'TradeOutgoing' ? styles.activeTab : styles.tab}>
-        <Text style={activeTab === 'TradeOutgoing' ? styles.activeTabText : styles.tabText}>TradeOutgoing</Text>
-      </TouchableOpacity>
-    </View>
+    <Tab.Navigator
+      initialRouteName="Explore"
+      activeColor="#e91e63"
+      labelStyle={{ fontSize: 12 }}
+      style={{ backgroundColor: 'tomato' }}
+    >
+      <Tab.Screen
+        name="Explore"
+        component={Explore}
+        options={{
+          tabBarLabel: 'Explore',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="explore" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Inventory"
+        component={Inventory}
+        options={{
+          tabBarLabel: 'Inventory',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="inventory" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="account-circle" color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderTopWidth: 1,
-    borderTopColor: 'gray',
-  },
-  tab: {
-    padding: 10,
-  },
-  tabText: {
-    color: 'gray',
-  },
-  activeTab: {
-    padding: 10,
-  },
-  activeTabText: {
-    color: 'black',
-  },
-});
