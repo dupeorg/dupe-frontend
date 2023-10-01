@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   image: {
-    width: '100%',
-    height: 200,
+    width: 100,
+    height: 100,
     borderRadius: 10,
     marginBottom: 8,
   },

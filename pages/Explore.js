@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {View, FlatList} from "react-native";
+import {View, FlatList, StyleSheet} from "react-native";
 import ItemCard from "../components/ItemCard";
 import SearchBar from "../components/SearchBar";
 
@@ -34,13 +34,25 @@ export default function Explore() {
   const [searchResults, setSearchResults] = useState(sampleResults);
 
   return (
-    <View>
+    <View style={styles.container}>
       <SearchBar setResults={setSearchResults}/>
       <FlatList
         data={searchResults}
         renderItem={({item}) => <ItemCard item={item}/>}
         keyExtractor={(item) => item.id}
+        numColumns={2}
+        contentContainerStyle={styles.listContainer}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  listContainer: {
+    paddingBottom: 64, 
+  }
+});
