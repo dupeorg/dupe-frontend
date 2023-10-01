@@ -17,6 +17,9 @@ export default function NavBar({ navigation, activeTab }) {
       <TouchableOpacity onPress={() => navigateTo('Profile')} style={activeTab === 'Profile' ? styles.activeTab : styles.tab}>
         <Text style={activeTab === 'Profile' ? styles.activeTabText : styles.tabText}>Profile</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigateTo('TradeOutgoing')} style={activeTab === 'TradeOutgoing' ? styles.activeTab : styles.tab}>
+        <Text style={activeTab === 'TradeOutgoing' ? styles.activeTabText : styles.tabText}>TradeOutgoing</Text>
+      </TouchableOpacity>
     </View>
   );
 };

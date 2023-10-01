@@ -5,7 +5,7 @@ import Inventory from "./pages/Inventory";
 import Profile from "./pages/Profile";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Tradebutton from './components/tradebutton';
+import TradeOutgoing from "./pages/TradeOutgoing";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,13 +17,11 @@ export default function App() {
         <Stack.Screen name="Explore" component={Explore}/>
         <Stack.Screen name="Inventory" component={Inventory}/>
         <Stack.Screen name="Profile" component={Profile}/>
+        <Stack.Screen name="TradeOutgoing" component={TradeOutgoing}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-    <View style={styles.container}>
-    <Tradebutton />
-  </View>
 
 const styles = StyleSheet.create({ 
   container: {
