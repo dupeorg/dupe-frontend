@@ -1,32 +1,25 @@
-import React, { useState } from "react";
-import {View, Text, FlatList} from "react-native";
+import React from "react";
+import {View, FlatList} from "react-native";
 import NavBar from "../components/NavBar";
+import ItemCard from "../components/ItemCard";
+
+const sampleResults = [
+  {
+    id: '1',
+    name: 'Dupe',
+    imageUrl: 'https://source.unsplash.com/user/c_v_r/100x100',
+    description: 'Dupe from Disney'
+  }
+];
 
 export default function Explore({ navigation }) {
-  const [searchResults, setSearchResults] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
-
-  // TODO: Complete
-  const handleSearch = (query) => {
-    setIsSearching(true);
-
-    // API Call
-    const results = [];
-    
-  };
-
   return (
     <View>
-      <Text>This is Explore</Text>
-      {isSearching ? (
-        <Text>Loading...</Text>
-      ) : (
-        <FlatList
-          data={searchResults}
-          renderItem={({item}) => <Text>{item}</Text>}
-          keyExtractor={(item) => item}
-        />
-      )}
+      <FlatList
+        data={sampleResults}
+        renderItem={({item}) => <ItemCard item={item}/>}
+        keyExtractor={(item) => item.id}
+      />
       <NavBar navigation={navigation} activeTab={"Explore"}/>
     </View>
   );
