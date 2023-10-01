@@ -30,7 +30,7 @@ const sampleResults = [
   },
 ];
 
-export default function Explore({ navigation }) {
+export default function Explore() {
   const [searchResults, setSearchResults] = useState(sampleResults);
 
   return (
