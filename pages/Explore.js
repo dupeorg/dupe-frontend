@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {View, FlatList, StyleSheet} from "react-native";
 import ItemCard from "../components/ItemCard";
 import SearchBar from "../components/SearchBar";
@@ -30,8 +30,30 @@ const sampleResults = [
   },
 ];
 
+const getItem=async()=>{
+
+  const response =  fetch('http://localhost:8000/get_items', {
+    //method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      userId,
+      name,
+      imageUrl,
+      description,
+     }),
+    });
+  
+}
+
 export default function Explore() {
-  const [searchResults, setSearchResults] = useState(sampleResults);
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    setSearchResults(getItem())
+  });
+  
 
   return (
     <View style={styles.container}>
